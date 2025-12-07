@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0A1924;
+    color: white;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0A1924;
+    z-index: 100;
+}
+
+.nama {
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar a {
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+    transition: .3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #00abf0;
+}
+
+.home {
+    width: 100%;
+    padding: 150px 10% 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.poto img {
+    width: 400px;
+    height: 400px;
+}
+
+.home-content h1 {
+    font-size: 45px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.home-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 550px;
+}
+
+.about {
+    padding: 200px 10% 50px;
+}
+
+.section-title {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #00abf0;
+}
+
+.about-content p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    max-width: 750px;
+}
+
+.portfolio {
+    padding: 200px 10% 200px;
+}
+
+.portfolio-desc {
+    max-width: 700px;
+    margin-bottom: 30px;
+}
+
+.portfolio-item {
+    background: #10283A;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #00abf0;
+    transition: .3s;
+    max-width: 200px;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    border-color: white;
+}
+
+.portfolio-item h3 a {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #00abf0;
+    text-decoration: none;
+}
