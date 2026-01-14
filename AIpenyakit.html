@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Telemedicine AI – Klasifikasi Tingkat Keparahan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f8; margin: 0; }
+    header { background: #1976d2; color: #fff; padding: 16px; text-align: center; }
+    .container { max-width: 900px; margin: 24px auto; background: #fff; padding: 24px; border-radius: 8px; }
+    h2 { border-bottom: 2px solid #1976d2; padding-bottom: 6px; }
+    .form-group { margin-bottom: 14px; }
+    label { font-weight: bold; display: block; margin-bottom: 6px; }
+    input, select, textarea { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+    .row { display: flex; gap: 16px; }
+    .row .form-group { flex: 1; }
+    button { background: #1976d2; color: #fff; border: none; padding: 10px 20px; font-size: 16px; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #125aa0; }
+    .result { margin-top: 24px; padding: 16px; border-radius: 6px; display: none; }
+    .aman { background: #e8f5e9; color: #2e7d32; }
+    .waspada { background: #fff8e1; color: #f57c00; }
+    .kritis { background: #ffebee; color: #c62828; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Sistem Telemedicine Berbasis AI</h1>
+  <p>Klasifikasi Tingkat Keparahan Penyakit</p>
+</header>
+
+<div class="container">
+
+  <h2>1. Data Identitas Pasien</h2>
+  <div class="row">
+    <div class="form-group">
+      <label>Usia</label>
+      <input type="number" id="usia" placeholder="Masukkan usia" />
+    </div>
+    <div class="form-group">
+      <label>Jenis Kelamin</label>
+      <select id="jk">
+        <option value="">-- Pilih --</option>
+        <option value="L">Laki-laki</option>
+        <option value="P">Perempuan</option>
+      </select>
+    </div>
+  </div>
+
+  <h2>2. Riwayat Penyakit Pasien</h2>
+  <div class="form-group">
+    <label>Penyakit yang Pernah / Sedang Diderita</label>
+    <input type="text" id="riwayat" placeholder="Contoh: Diabetes, Hipertensi, Asma" />
+  </div>
+
+  <h2>3. Data Gejala Penyakit</h2>
+  <div class="form-group">
+    <label>Gejala yang Dialami</label>
+    <textarea id="gejala" rows="3" placeholder="Contoh: demam, batuk, sesak napas"></textarea>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label>Durasi Gejala (hari)</label>
+      <input type="number" id="durasi" placeholder="Jumlah hari" />
+    </div>
+    <div class="form-group">
+      <label>Tingkat Keparahan Gejala</label>
+      <select id="nyeri">
+        <option value="">-- Pilih --</option>
+        <option value="ringan">Ringan</option>
+        <option value="sedang">Sedang</option>
+        <option value="berat">Berat</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Sesak Napas</label>
+    <select id="sesak">
+      <option value="">-- Pilih --</option>
+      <option value="tidak">Tidak</option>
+      <option value="ya">Ya</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Demam Tinggi</label>
+    <select id="demam">
+      <option value="">-- Pilih --</option>
+      <option value="tidak">Tidak</option>
+      <option value="ya">Ya</option>
+    </select>
+  </div>
+
+  <button onclick="analisisAI()">Proses Analisis AI</button>
+
+  <div id="hasil" class="result"></div>
+
+</div>
+
+<script>
+  function analisisAI() {
+    const nyeri = document.getElementById('nyeri').value;
+    const sesak = document.getElementById('sesak').value;
+    const demam = document.getElementById('demam').value;
+    const durasi = parseInt(document.getElementById('durasi').value || 0);
+    const hasil = document.getElementById('hasil');
+
+    let status = "";
+    let rekomendasi = "";
+    hasil.className = "result";
+
+    // Simulasi Decision Tree
+    if (sesak === 'ya' && nyeri === 'berat') {
+      status = "KRITIS";
+      rekomendasi = "Kondisi berisiko tinggi. Segera lakukan tindakan darurat dan konsultasi langsung dengan dokter.";
+      hasil.classList.add('kritis');
+    } else if (demam === 'ya' || nyeri === 'sedang' || durasi > 3) {
+      status = "WASPADA";
+      rekomendasi = "Disarankan konsultasi dengan dokter dan pemantauan kondisi secara berkala.";
+      hasil.classList.add('waspada');
+    } else {
+      status = "AMAN";
+      rekomendasi = "Lakukan perawatan mandiri dan observasi perkembangan gejala.";
+      hasil.classList.add('aman');
+    }
+
+    hasil.innerHTML = `<h3>Hasil Klasifikasi AI</h3>
+                       <p>Status Kondisi Pasien: <strong>${status}</strong></p>
+                       <p>Rekomendasi: ${rekomendasi}</p>`;
+    hasil.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
